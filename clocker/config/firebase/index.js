@@ -16,7 +16,7 @@ const app =  firebase.apps.length
 ? firebase.app()
 : firebase.initializeApp(firebaseConfig);
 
-export const presistenceMode = firebase.auth.Auth.Persistence.LOCAL
+export const persistenceMode = firebase.auth.Auth.Persistence.LOCAL
 
 //firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
 
