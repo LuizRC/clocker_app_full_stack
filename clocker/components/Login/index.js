@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 
 import { Logo } from '../Logo';
-import { firebaseClient, persistenceMode } from '../../config/firebase';
+import { firebaseClient, persistenceMode } from '../../config/firebase/client';
 
 import  async  from '@firebase/util';
 import app from '../../config/firebase/client';
