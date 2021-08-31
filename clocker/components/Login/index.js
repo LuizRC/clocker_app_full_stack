@@ -36,7 +36,7 @@ export const Login = () => {
     onSubmit: async (values, form) => {
       firebaseClient.auth().setPersistence(persistenceMode)
       try {
-      const user = await firebase.auth().signInWithEmailAndPassword(values.email, values.password)
+      const user = await firebaseClient.auth().signInWithEmailAndPassword(values.email, values.password)
       } catch (error) {
         console.log('ERROR:')
       }
