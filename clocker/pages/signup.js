@@ -1,5 +1,7 @@
+import { useEffect } from 'react'
 import Link from 'next/link'
-import { useFormik} from 'formik'
+import useRouter from 'next/router'
+import { useFormik } from 'formik'
 import * as yup from 'yup'
 
 import {
@@ -10,10 +12,7 @@ import {
   FormHelperText
 } from '@chakra-ui/react';
 
-import { Logo } from "../components"
-
-import  { firebaseClient }   from '../config/firebase/client';
-import  async  from '@firebase/util';
+import { Agenda, Logo, useAuth } from "../components"
 
 const validationSchema = yup.object().shape({
   email: yup.string().email('E-mail inválido').required('Preenchimento obrigatório'),
@@ -23,23 +22,20 @@ const validationSchema = yup.object().shape({
 
 export default function Home() {
 
-  const { 
-    values, 
-    errors, 
-    touched, 
-    handleChange, 
-    handleBlur, 
+  const [auth, { signup}] = useAuth()
+
+  const router = useRouter()
+
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
     handleSubmit,
     isSubmitting
   } = useFormik({
-    onSubmit: async (values, form) => {
-      try {
-      const user = await firebaseClient.auth().createUserWithEmailAndPassword(values.email, values.password)
-      console.log(user)
-      } catch (error) {
-        console.log('ERROR:')
-      }
-    },
+    onSubmit:signup,
     validationSchema,
     initialValues: {
       email: '',
@@ -47,6 +43,11 @@ export default function Home() {
       password: ''
     }
   })
+
+  useEffect(() => {
+    auth.user && router.push('/agenda')
+
+  }, [auth.user])
 
   return (
     <Container p={4} centerContent>
@@ -56,7 +57,7 @@ export default function Home() {
       </Box>
 
       <Box>
-      <FormControl id="email" p={4} isRequired>
+        <FormControl id="email" p={4} isRequired>
           <FormLabel>Email</FormLabel>
           <Input size="lg" type="email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
           {touched.email && <FormHelperText textColor='#e74c3c'>{errors.email}</FormHelperText>}
