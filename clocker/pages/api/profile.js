@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { firebaseServer } from "../../config/firebase/server"
 
 const db = firebaseServer.firestore()
@@ -11,6 +10,7 @@ export default async (req, res) => {
   const [ user_id ] = await firebaseServer.auth().verifyIdToken(token)
 
   profile.doc(req.body.username).set({
+    userId: user_id,
     username: req.body.username
   })
 

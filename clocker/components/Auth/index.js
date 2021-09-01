@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { firebaseClient, persistenceMode } from '../../config/firebase/client'
 
-const AuthContext = React.createContext([{ }, () => { }])
+const AuthContext = React.createContext([{}, () => { }])
 
 export const logout = () => firebaseClient.auth().signOut()
 

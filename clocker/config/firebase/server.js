@@ -1,7 +1,4 @@
 import firebaseServer from 'firebase-admin'
-//var admin = require("firebase-admin");
-
-//var serviceAccount = require("path/to/serviceAccountKey.json");
 
 const app = firebaseServer.apps.length
     ? firebaseServer.app()
