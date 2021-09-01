@@ -3,9 +3,9 @@ import firebaseServer from 'firebase-admin'
 
 //var serviceAccount = require("path/to/serviceAccountKey.json");
 
-const app = firebase.apps.length
-    ? firebase.app()
-    : firebase.initializeApp({
+const app = firebaseServer.apps.length
+    ? firebaseServer.app()
+    : firebaseServer.initializeApp({
         credential: admin.credential.cert({
             type: "service_account",
             auth_uri: "https://accounts.google.com/o/oauth2/auth",
