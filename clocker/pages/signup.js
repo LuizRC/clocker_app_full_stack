@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Link from 'next/link'
-import useRouter from 'next/router'
+import { useRouter } from 'next/router'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
@@ -12,7 +12,7 @@ import {
   FormHelperText
 } from '@chakra-ui/react';
 
-import { Agenda, Logo, useAuth } from "../components"
+import { Logo, useAuth } from "../components"
 
 const validationSchema = yup.object().shape({
   email: yup.string().email('E-mail inválido').required('Preenchimento obrigatório'),
