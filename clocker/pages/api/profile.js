@@ -14,7 +14,5 @@ export default async (req, res) => {
     username: req.body.username
   })
 
-  console.log(user)
-
   res.status(200).json({ name: 'John Doe' })
 }

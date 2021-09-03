@@ -18,13 +18,10 @@ export const login = async ({ email, password }) => {
 
 }
 
-
 export const signup = async ({ email, password, username }) => {
     try {
         await firebaseClient.auth().createUserWithEmailAndPassword(email, password)
         const user = await login({ email, password})
-        //setupProfile(token, username)
-
         const token = await user.getIdToken()
 
         const { data } = await axios({
@@ -45,7 +42,6 @@ export const useAuth = () => {
     const [auth] = useContext(AuthContext)
 
     return [auth, { login, logout, signup }]
-
 }
 
 export const AuthProvider = ({ children }) => {
@@ -71,5 +67,4 @@ export const AuthProvider = ({ children }) => {
             {children}
         </AuthContext.Provider>
     )
-
 }
