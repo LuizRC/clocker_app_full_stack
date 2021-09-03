@@ -38,6 +38,7 @@ const setSchedule = async (req, res) => {
     const doc = await agenda.doc(docId).get()
 
     if (doc.exists) {
+        console.log('doc')
         res.status(400).json({ message: 'Time blocked!' })
         return
     }
@@ -75,6 +76,7 @@ const getSchedule = async (req, res) => {
 
         return res.status(200).json(result)
     } catch (error) {
+        console.log('FB ERROR:', error)
         return res.status(401)
     }
 }
